@@ -2,12 +2,15 @@ class sudoku:
     def __init__(self,board):
         self.board = board
     def __str__(self):
-        visual = ''
+        visual = ""
         for i in range(0,9):
             for j in range(0,9):
-                visual += '| '+str(self.board[i][j].value)
-            visual += ' |' + '\n'
-            visual += "______________________________\n"
+                visual += str(self.board[i][j].value) + '  '
+                if ((j+1) == 3) or ((j+1) == 6):
+                    visual += "| "
+            if ((i+1) == 3) or ((i+1) == 6):
+                    visual += "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _"    
+            visual += '\n\n'
         return visual
 
 
@@ -29,7 +32,6 @@ while True:
             row.append(cell(given_board[counter]))
             counter += 1
         board.append(row)
-        print(*board[i])
     
     sudoku = sudoku(board)
   
