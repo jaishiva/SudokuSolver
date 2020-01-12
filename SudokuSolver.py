@@ -1,3 +1,4 @@
+# contains board and method to display board
 class sudoku:
     def __init__(self,board):
         self.board = board
@@ -15,7 +16,7 @@ class sudoku:
 
 
 
-
+# cell is a block in the board, cell object has a value and position 
 class cell:
     def __init__(self,value,i,j):
         self.value = value
@@ -25,7 +26,7 @@ class cell:
     def __str__(self):
         return str(self.value)
     
-
+# get and set all the possibilities a cell has storing the final list in the cell's possibility param
 def get_possibility(cell,sudoku):
     for c in sudoku.board[cell.row]:
         if c != cell and c.value != '.':
@@ -47,11 +48,13 @@ def get_possibility(cell,sudoku):
     else:
         start_row = 6
     
-    for r in range(start_row,start_row+4):
-        for c in range(start_col,start_col+4):
+    for r in range(start_row,start_row+3):
+        for c in range(start_col,start_col+3):
             if sudoku.board[r][c] != cell and sudoku.board[r][c] != '.':
                 cell.possibilities -= {sudoku.board[r][c].value}
 
+
+# init - initial setup of board
 board = []
 given_board = [5,3,'.','.',7,'.','.','.','.',6,'.','.',1,9,5,'.','.','.','.',9,8,'.','.','.','.',6,'.',8,'.','.','.',6,'.','.','.',3,4,'.','.',8,'.',3,'.','.',1,7,'.','.','.',2,'.','.','.',6,'.',6,'.','.','.','.',2,8,'.','.','.','.',4,1,9,'.','.',5,'.','.','.','.',8,'.','.',7,9]
 counter =0
@@ -67,13 +70,13 @@ sudoku = sudoku(board)
 print(sudoku)
 
 
-
+# main logic
 while True:
     for i in range(9):
         for j in range(9):
             if sudoku.board[i][j].value == '.':
                 get_possibility(sudoku.board[i][j],sudoku)
-
+                print(sudoku.board[i][j].possibilities)
     break
 
 
