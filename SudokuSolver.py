@@ -94,7 +94,7 @@ def check_for_validity(empty_cell,sudoku):
     
     for r in range(start_row,start_row+3):
         for c in range(start_col,start_col+3):
-            if sudoku.board[r][c].value == empty_cell.value and sudoku.board[r][c].row != empty_cell.row and sudoku.board[r][c].column != empty_cell.column:
+            if sudoku.board[r][c].value == empty_cell.value and sudoku.board[r][c] != empty_cell:
                 return False
 
     return True
